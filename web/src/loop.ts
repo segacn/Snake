@@ -8,18 +8,18 @@ const MAX_TICKS_PER_FRAME = 10;
 type LoopHandles = { stop: () => void };
 
 export function startLoop(
-  initialState: GameState,
+  stateRef: { current: GameState },
   renderFn: (state: GameState, rs: RenderState) => void,
   initialRenderState: RenderState,
 ): LoopHandles {
-  let state = initialState;
   let rs = initialRenderState;
-  let lastStatus = initialState.status;
+  let lastStatus = stateRef.current.status;
   let lastTime = 0;
   let accumulator = 0;
   let rafId = 0;
 
   function loop(now: number): void {
+    let state = stateRef.current; // pick up input / reset writes each frame
     const delta = lastTime === 0 ? 16 : now - lastTime;
     lastTime = now;
 
@@ -50,6 +50,7 @@ export function startLoop(
     }
     lastStatus = state.status;
 
+    stateRef.current = state; // write back so input handlers stay in sync
     renderFn(state, rs);
     rafId = requestAnimationFrame(loop);
   }

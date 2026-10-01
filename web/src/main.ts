@@ -84,9 +84,8 @@ window.addEventListener('resize', () => {
 
 // Start the game loop
 loopHandles = startLoop(
-  stateRef.current,
+  stateRef,
   (updatedState, rs) => {
-    stateRef.current = updatedState;
     renderState = rs;
     render(ctx!, updatedState, rs);
     renderHud(hudEl!, updatedState);
