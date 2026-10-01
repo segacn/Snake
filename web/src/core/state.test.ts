@@ -1,15 +1,20 @@
 import { describe, it, expect } from 'vitest';
 import { initialState, tick } from './state.js';
 import { register } from './powerups/registry.js';
+import { slowmo } from './powerups/definitions/slowmo.js';
+import { speedup } from './powerups/definitions/speedup.js';
 import { ghost } from './powerups/definitions/ghost.js';
 import { multiplier } from './powerups/definitions/multiplier.js';
 import { shield } from './powerups/definitions/shield.js';
 import type { GameState } from './types.js';
 
-// Register defs once (registry is a module-level singleton)
-try { register(ghost); } catch { /* already registered */ }
-try { register(multiplier); } catch { /* already registered */ }
-try { register(shield); } catch { /* already registered */ }
+// Each test file gets an isolated module graph (isolate: true in vitest.config.js),
+// so this registry instance is always fresh — no try/catch needed.
+register(slowmo);
+register(speedup);
+register(ghost);
+register(multiplier);
+register(shield);
 
 function playing(s: GameState): GameState {
   return { ...s, status: 'playing' };
