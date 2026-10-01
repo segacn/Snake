@@ -17,6 +17,7 @@ export function initTouch(
   let startY = 0;
 
   function onStart(e: TouchEvent): void {
+    e.preventDefault();
     const t = e.changedTouches[0];
     startX = t.clientX;
     startY = t.clientY;
@@ -44,7 +45,7 @@ export function initTouch(
     }
   }
 
-  el.addEventListener('touchstart', onStart, { passive: true });
+  el.addEventListener('touchstart', onStart, { passive: false });
   el.addEventListener('touchend', onEnd, { passive: true });
   return () => {
     el.removeEventListener('touchstart', onStart);
