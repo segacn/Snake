@@ -34,4 +34,9 @@ export interface PowerUpDef {
   duration: number;
   apply: (state: GameState) => Partial<GameState>;
   onExpire?: (state: GameState) => Partial<GameState>;
+  // Optional resolution contributions — derived by tick() from activeEffects:
+  tickMultiplier?: number;   // multiplies BASE_TICK_MS (2 = slower, 0.5 = faster)
+  scoreMultiplier?: number;  // multiplies score on food eat
+  ghostMode?: boolean;       // disables self-collision
+  shieldOnApply?: number;    // shields granted on pickup
 }
