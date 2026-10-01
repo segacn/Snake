@@ -1,12 +1,13 @@
 import type { PowerUpDef } from '../../types.js';
+import { BASE_TICK_MS } from '../../../config.js';
 
-// TODO: doubles tick-rate for N ticks
 export const speedup: PowerUpDef = {
   id: 'speedup',
   color: '#facc15',
   symbol: '⚡',
-  spawnWeight: 1,
-  duration: 33,
-  apply: (_state) => ({}),
-  onExpire: (_state) => ({}),
+  spawnWeight: 2,
+  duration: Math.round(5000 / BASE_TICK_MS), // ≈33 ticks
+  tickMultiplier: 0.5,
+  apply: () => ({}),
+  onExpire: () => ({}),
 };

@@ -1,12 +1,13 @@
 import type { PowerUpDef } from '../../types.js';
+import { BASE_TICK_MS } from '../../../config.js';
 
-// TODO: disables self-collision for N ticks
 export const ghost: PowerUpDef = {
   id: 'ghost',
   color: '#a78bfa',
   symbol: '👻',
   spawnWeight: 1,
-  duration: 40,
-  apply: (_state) => ({}),
-  onExpire: (_state) => ({}),
+  duration: Math.round(6000 / BASE_TICK_MS), // ≈40 ticks
+  ghostMode: true,
+  apply: () => ({}),
+  onExpire: () => ({}),
 };

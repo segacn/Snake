@@ -1,12 +1,13 @@
 import type { PowerUpDef } from '../../types.js';
+import { BASE_TICK_MS } from '../../../config.js';
 
-// TODO: doubles score for N ticks
 export const multiplier: PowerUpDef = {
   id: 'multiplier',
   color: '#34d399',
-  symbol: '×',
-  spawnWeight: 1,
-  duration: 33,
-  apply: (_state) => ({}),
-  onExpire: (_state) => ({}),
+  symbol: '×2',
+  spawnWeight: 3,
+  duration: Math.round(10000 / BASE_TICK_MS), // ≈67 ticks
+  scoreMultiplier: 2,
+  apply: () => ({}),
+  onExpire: () => ({}),
 };
