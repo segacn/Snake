@@ -1,6 +1,31 @@
 ### The Snake
 
-A simple snake game in java .
+A simple snake game in java — and now a modern web port.
+
+---
+
+## Web Version (TypeScript + Canvas + Vite)
+
+The web port lives in the `web/` subdirectory.
+
+### Requirements
+* Node.js ≥ 20
+
+### Run the dev server
+```sh
+cd web
+npm install
+npm run dev
+```
+
+### Production build
+```sh
+cd web
+npm install
+npm run build
+```
+
+---
 Using Threads and Java Swing to display the game.
 The code is well commented, if you have any questions or want to continue this project feel free to do so 👌
 
